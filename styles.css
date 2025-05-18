@@ -1,0 +1,579 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins', sans-serif;
+    font-size: 100%;
+    line-height: 1.6;
+}
+
+body {
+    width: 99%;
+    margin: auto;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(7, 2fr);
+    grid-template-areas:
+        "nav"
+        "aside"
+        "main"
+        "content1"
+        "content2"
+        "content3"
+        "footer";
+    gap: 0.5rem;
+}
+
+nav {
+    grid-area: nav;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    width: 7.5rem;
+    height: 7.5rem;
+    background-image: url(/images/logo.jpg);
+    background-size: cover;
+    border-radius: 0.25rem;
+}
+
+nav ul li {
+    list-style: none;
+    display: inline;
+    margin-left: 1em;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: rgba(255, 165, 0, 0.5);
+    font-weight: 700;
+}
+
+.current {
+    color: orange;
+}
+
+nav ul li:hover a {
+    color: orange;
+}
+
+.contact-btn {
+    padding: 0.6rem;
+    border: none;
+    background-color: rgba(255, 165, 0, 0.5);
+    border-radius: 0.25rem;
+    color: white;
+    font-weight: 700;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.contact-btn:hover {
+    cursor: pointer;
+    background-color: orange;
+}
+
+.contact-btn:active {
+    transform: scale(0.95);
+    box-shadow: none;
+}
+
+.modal-bg {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.3s, opacity 0.3s;
+}
+
+.modal-bg .modal {
+    position: relative;
+    height: 65%;
+    width: 98%;
+    background: whitesmoke;
+    border-radius: 0.25rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+    overflow: auto;
+}
+
+.modal-bg .modal header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bg .modal header h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: rgb(255, 183, 0);
+    color: white;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.modal-bg .modal form .name_and_email {
+    margin: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+}
+
+.modal-bg .modal form .name_and_email label {
+    display: inline;
+    font-weight: 700;
+}
+
+.modal-bg .modal form .name_and_email input {
+    display: inline;
+    width: -moz-max-content;
+    width: max-content;
+    padding: 0.4rem;
+    margin-bottom: 1em;
+    border-radius: 0.25rem;
+    border: none;
+    outline: 1px solid rgb(255, 183, 0);
+}
+
+.modal-bg .modal form .name_and_email input:hover {
+    background: #e8f0fe;
+}
+
+.modal-bg .modal form .cards_container {
+    border: none;
+}
+
+.modal-bg .modal form .cards_container .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background: white;
+    border: none;
+    border-radius: 0.625rem;
+    padding: 1rem;
+    margin: 2em;
+}
+
+.modal-bg .modal form .cards_container .card:hover {
+    box-shadow: 0 2px 4px 6px rgba(255, 183, 0, 0.5);
+}
+
+.modal-bg .modal form .cards_container .card h3 {
+    font-size: 0.875rem;
+    margin-bottom: 1em;
+}
+
+.modal-bg .modal form .cards_container .card label {
+    display: inline;
+    margin-bottom: 0.5em;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.875rem;
+}
+
+.modal-bg .modal form .cards_container .card label input:hover {
+    cursor: pointer;
+    display: inline;
+}
+
+.modal-bg .modal form .cards_container .card .text {
+    width: calc(100% - 1.5rem);
+    margin-bottom: 1em;
+    padding: 0.4rem;
+    border-radius: 0.25rem;
+    border: none;
+    outline: 1px solid rgb(255, 183, 0);
+}
+
+.modal-bg .modal form .cards_container .card .text:hover {
+    background: #e8f0fe;
+}
+
+.modal-bg .modal .button-container {
+    grid-area: button;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-bg .modal .button-container .send-btn {
+    padding: 1rem;
+    margin-bottom: 1em;
+    border: none;
+    border-radius: 0.25rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    font-weight: 700;
+    transition: background 0.15s ease-in-out;
+}
+
+.modal-bg .modal .button-container .send-btn:hover {
+    cursor: pointer;
+    background: rgb(255, 183, 0);
+    transition: background 0.15s ease-in-out;
+}
+
+.modal-bg .modal .button-container .send-btn:active {
+    transform: scale(0.95);
+    box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.modal-bg .modal .modal-close {
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 32px;
+    font-weight: bold;
+    color: rgba(255, 183, 0, 0.5);
+}
+
+.modal-bg .modal .modal-close:hover {
+    color: rgb(255, 183, 0);
+}
+
+.modal-bg .modal::-webkit-scrollbar {
+    width: 4vw;
+}
+
+.modal-bg .modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 183, 0, 0.5);
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.modal-bg .modal::-webkit-scrollbar-thumb:hover {
+    background: rgb(255, 183, 0);
+}
+
+.modal-bg .modal::-webkit-scrollbar-track {
+    background: lightgrey;
+    border-radius: 0 0.25rem 0.25rem 0;
+}
+
+.bg-active {
+    visibility: visible;
+    opacity: 1;
+}
+
+
+aside {
+    grid-area: aside;
+    background: whitesmoke;
+    border-radius: 0.25rem;
+}
+
+aside:hover h1 {
+    background: rgb(255, 183, 0);
+}
+
+aside:hover .sidebar-links li {
+    background: rgb(255, 183, 0);
+    border-radius: 0.25rem;
+}
+
+aside h1 {
+    padding: 1rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    text-align: center;
+    letter-spacing: 0.4em;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+aside p {
+    padding: 1em;
+    color: black;
+    font-size: 0.8rem;
+    font-weight: 400;
+    line-height: 1.6rem;
+}
+
+aside .sidebar-links li {
+    margin: 1em;
+    list-style: none;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: white;
+    list-style: none;
+}
+
+aside .sidebar-links li a {
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+aside .sidebar-links li h2 {
+    padding: 1rem;
+    border-radius: 0.25rem;
+    background: rgba(255, 183, 0, 0.5);
+}
+
+aside .sidebar-links li h2:hover {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+aside .sidebar-links li h2:hover h2 {
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+aside .sidebar-links li ul {
+    display: none;
+    background: rgba(255, 183, 0, 0.5);
+}
+
+aside .sidebar-links li ul li {
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0;
+}
+
+aside .sidebar-links li ul li:hover {
+    cursor: pointer;
+    background: white;
+    border-radius: 0;
+}
+
+aside .sidebar-links li:hover ul {
+    display: block;
+}
+
+aside .sidebar-links li:hover ul li:hover a {
+    color: white;
+}
+
+
+main {
+    grid-area: main;
+    background: whitesmoke;
+    border-radius: 0.25rem;
+}
+
+main:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+main:hover h1 {
+    background: rgb(255, 183, 0);
+}
+
+main h1 {
+    padding: 1rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+main h4 {
+    padding: 1rem;
+    color: black;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 0.9rem;
+}
+
+main p {
+    padding: 0 1rem;
+    color: black;
+    line-height: 1.6em;
+    font-family: Arial, Helvetica, sans-serifs;
+    font-size: 0.85rem;
+    font-weight: 400;
+}
+
+main .p4 {
+    padding: 0.5rem;
+    font-weight: bold;
+}
+
+.content1 {
+    grid-area: content1;
+    background: whitesmoke;
+    color: black;
+    border-radius: 0.25rem;
+}
+
+.content1:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.content1:hover h1 {
+    background: rgb(255, 183, 0);
+}
+
+.content1 h1 {
+    padding: 1rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: center;
+}
+
+.content1 p {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.content2 {
+    grid-area: content2;
+    background: whitesmoke;
+    color: black;
+    border-radius: 0.25rem;
+}
+
+.content2:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.content2:hover h1 {
+    background: rgb(255, 183, 0);
+}
+
+.content2 h1 {
+    padding: 1rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: center;
+}
+
+.content2 p {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.content3 {
+    grid-area: content3;
+    background: whitesmoke;
+    color: black;
+    border-radius: 0.25rem;
+}
+
+.content3:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.content3:hover h1 {
+    background: rgb(255, 183, 0);
+}
+
+.content3 h1 {
+    padding: 1rem;
+    background: rgba(255, 183, 0, 0.5);
+    color: white;
+    border-radius: 0.25rem 0.25rem 0 0;
+    text-align: center;
+}
+
+.content3 p {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    line-height: 1.6rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+footer {
+    grid-area: footer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 183, 0);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 700;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+footer .footer-link {
+    text-decoration: none;
+    color: white;
+}
+
+footer .footer-link:hover {
+    -webkit-text-decoration: 1px line-through rgb(255, 183, 0);
+    text-decoration: 1px line-through rgb(255, 183, 0);
+}
+
+@media (min-width: 996px) and (hover: hover) and (pointer: fine) {
+    body {
+        width: 60%;
+        margin: auto;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: 0.2fr 1.5fr 0.8fr 0.2fr;
+        grid-template-areas:
+            "nav nav nav nav"
+            "aside main main main"
+            "aside content1 content2 content3"
+            "aside footer footer footer";
+        gap: 0.5rem;
+    }
+
+    nav {
+        grid-area: nav;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo:hover {
+        cursor: pointer;
+        transform: rotate(-12deg);
+    }
+
+    .contact-btn {
+        padding: 0.6rem;
+        border: none;
+        background-color: rgba(255, 165, 0, 0.5);
+        border-radius: 0.25rem;
+        color: white;
+        font-weight: 700;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .contact-btn:hover {
+        cursor: pointer;
+        background-color: orange;
+    }
+
+    .contact-btn:active {
+        transform: scale(0.95);
+        box-shadow: none;
+    }
+
+    .modal-bg .modal {
+        position: relative;
+        height: 65%;
+        width: 30%;
+        background: whitesmoke;
+        border-radius: 0.25rem;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
+        overflow: auto;
+    }
+
+    .modal-bg .modal::-webkit-scrollbar {
+        width: 1.2vw;
+    }
+
+}
